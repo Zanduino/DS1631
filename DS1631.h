@@ -58,6 +58,7 @@
                                         int16_t alarmTemp);                   //                                  //
       uint8_t getAlarm(const uint8_t device);                                 // Return alarm state of device     //
       void    setPolarity(const uint8_t device, const bool polarity);         // Set polarity pin to high or low  //
+      void    setContinuous(const uint8_t device,const bool continuous=true); // Set to continuous or one-shot    //
     private:                                                                  // Private methods                  //
       uint8_t _Devices[DS1631_MAX_DEVICES]={0};                               // List of device addresses         //
       uint8_t _TransmissionStatus = 0;                                        // I2C read/write error code        //

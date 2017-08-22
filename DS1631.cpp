@@ -147,3 +147,11 @@ void DS1631_Class::setPolarity(const uint8_t device, const bool polarity) {   //
   writeByte(_Devices[device],DS1631_ACCESS_CONFIG,                            // update buffer with boolean value //
   (readByte(_Devices[device],DS1631_ACCESS_CONFIG)&0xFD)&(polarity<<1));      // of polarity setting              //
 } // of method setPolarity()                                                  //                                  //
+/*******************************************************************************************************************
+** method setContinuous() will set the DS1631 to continuous measurements unless the optional "continuous" boolean **
+** parameter is set to false, in which case one-shot measurements are activated                                   **
+*******************************************************************************************************************/
+void DS1631_Class::setContinuous(const uint8_t device, const bool continuous){// Set to continuous or one-shot    //
+  writeByte(_Devices[device],DS1631_ACCESS_CONFIG,                            // update buffer with boolean value //
+  (readByte(_Devices[device],DS1631_ACCESS_CONFIG)&0xFE)&~continuous);        // of continuous switch             //
+} // of method setContinuous()                                                //                                  //

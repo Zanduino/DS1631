@@ -4,6 +4,10 @@
 ** https://github.com/SV-Zanshin/DS1631 and a more detailed description of this program (and the library) can be  **
 ** found at https://github.com/SV-Zanshin/DS1631/wiki/ReadTemperature.ino                                         **
 **                                                                                                                **
+** This program will take ambient temperature as the minimum possible temp, then have the thermometer heated by   **
+** putting a finger on it to get a max temperature. Then the midpoint is selected and both the high and low       **
+** alarms are set to that temperature. Then each alarm can be demonstrated by alternately heating the thermometer **
+** and letting it cool back down.                                                                                 **
 **                                                                                                                **
 ** This program is free software: you can redistribute it and/or modify it under the terms of the GNU General     **
 ** Public License as published by the Free Software Foundation, either version 3 of the License, or (at your      **
@@ -14,10 +18,10 @@
 **                                                                                                                **
 ** Vers.  Date       Developer           Comments                                                                 **
 ** ====== ========== =================== ======================================================================== **
-** 1.0.0b 2017-08-20 Arnd@SV-Zanshin.Com Initial coding                                                           **
+** 1.0.0b 2017-08-22 Arnd@SV-Zanshin.Com Initial coding                                                           **
 **                                                                                                                **
 *******************************************************************************************************************/
-#include <DS1631.h>                                                          // Include the DS3231M RTC library  //
+#include <DS1631.h>                                                          // Include the DS1631 library        //
 /*******************************************************************************************************************
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
@@ -29,6 +33,7 @@ const uint8_t  LED_PIN             =     13;                                  //
 *******************************************************************************************************************/
 DS1631_Class  DS1631;                                                         // Create an instance of the DS1631 //
 char          inputBuffer[SPRINTF_BUFFER_SIZE];                               // Buffer for sprintf()/sscanf()    //
+int16_t       ambientTemperature,maximumTemperature,alarmTemperature;         // Store min, max and alarm         //
 /*******************************************************************************************************************
 ** Method Setup(). This is an Arduino IDE method which is called upon boot or restart. It is only called one time **
 ** and then control goes to the main loop, which loop indefinately.                                               **
@@ -39,7 +44,7 @@ void setup() {                                                                //
   #ifdef  __AVR_ATmega32U4__                                                  // If this is a 32U4 processor, then//
     delay(3000);                                                              // wait 3 seconds for the serial    //
   #endif                                                                      // interface to initialize          //
-  Serial.print(F("\nStarting Set program\n"));                                // Show program information         //
+  Serial.print(F("\nStarting SetAlarms program\n"));                          // Show program information         //
   Serial.print(F("- Compiled with c++ version "));                            //                                  //
   Serial.print(F(__VERSION__));                                               // Show compiler information        //
   Serial.print(F("\n- On "));                                                 //                                  //
@@ -56,23 +61,50 @@ void setup() {                                                                //
   Serial.println(F(" DS1631 device(s)"));                                     //                                  //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
     DS1631.setPrecision(i,12);                                                // Set maximum precision = 0.0625°C //
-    DS1631.setAlarmTemperature(i,1,DS1631.readTemp(i)+16);                    // Alarm when temp goes up 1°C      //
-  } // of for-next every thermometer found                                    //                                  //  
+  } // of for-next every thermometer found                                    //                                  //
+  delay(750);                                                                 // Wait for measurements to be made //
+  for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
+    ambientTemperature += DS1631.readTemp(i);                                 // Read temperatures                //
+  } // of for-next every thermometer found                                    //                                  //
+  ambientTemperature = ambientTemperature / DS1631.thermometers;              // compute average                  //
+  Serial.println(F("Now warm up the device(s) for 10 seconds"));              //                                  //
+  delay(10000);                                                               // Wait for 10 seconds              //
+  for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
+    maximumTemperature += DS1631.readTemp(i);                                 // Read temperatures                //
+  } // of for-next every thermometer found                                    //                                  //
+  maximumTemperature = ambientTemperature / DS1631.thermometers;              // compute average                  //
+  Serial.print(F("Ambient = "));                                              //                                  //
+  Serial.print(ambientTemperature*0.0625,3);                                  //                                  //
+  Serial.print(F("\xC2\xB0""C, Maximum = "));                                 //                                  //
+  Serial.print(maximumTemperature*0.0625,3);                                  //                                  //
+  Serial.println("\xC2\xB0""C");                                              //                                  //
+  Serial.print(F("Setting High and Low alarms to "));                         //                                  //
+  alarmTemperature = (maximumTemperature-ambientTemperature)/2;               // Set alarm to midpoint            //
+  Serial.print(alarmTemperature*0.0625,3);                                    //                                  //
+  for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
+    DS1631.setAlarmTemperature(i,0,alarmTemperature);                         // Set low alarm                    //
+    DS1631.setAlarmTemperature(i,1,alarmTemperature);                         // Set high alarm                   //
+  } // of for-next every thermometer found                                    //                                  //
 } // of method setup()                                                        //                                  //
 /*******************************************************************************************************************
 ** This is the main program for the Arduino IDE, it is an infinite loop and keeps on repeating.                   **
 *******************************************************************************************************************/
 void loop() {                                                                 //                                  //
-  for (uint8_t i=0;i<DS1631.thermometers;i++) {
-    Serial.print(F("Thermometer "));
-    Serial.print(i+1);
-    if (DS1631.getAlarm(i)) {                                                 // Print out if alarm raised        //
-      Serial.print(F(" alarm raised. Thermometer "));
+  static uint8_t alarmCode;                                                   //                                  //
+  for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // Loop through all thermometers    //
+    Serial.print(F("#"));                                                     //                                  //
+    Serial.print(i+1);                                                        //                                  //
+    Serial.print(F(" = "));                                                   //                                  //
+    Serial.print(DS1631.readTemp(i)*0.0625,4);                                // Display temperature              //
+    Serial.println("\xC2\xB0""C ");                                           //                                  //
+    alarmCode = DS1631.getAlarm(i);                                           // Get alarm state                  //
+    if (alarmCode) {                                                          // see if an alarm has been raised  //
+      if (alarmCode&1) Serial.print(F("(low)"));                              // Print out if low alarm raised    //
+      if (alarmCode&2) Serial.print(F("(high)"));                             // Print out if low alarm raised    //
+      Serial.print(F(" alarm raised."));                                      //                                  //
     }  // of if-then an alarm has been raised                                 //                                  //
-    Serial.print(F(" has "));
-    Serial.print(DS1631.readTemp(i)*0.0625,4);
-    Serial.println("\xC2\xB0""C");                                            //                                  //
+    Serial.print(F(", "));                                                    //                                  //
   } // of for-next each thermometer                                           //                                  //
-  Serial.println();
-  delay(5000);
+  Serial.println();                                                           //                                  //
+  delay(5000);                                                                // wait 5 seconds before looping    //
 } // of method loop()                                                         //----------------------------------//
