@@ -11,12 +11,8 @@
 
 
 
-# DS1631
-<img src="https://github.com/SV-Zanshin/DS1361/blob/master/Images/DS1361.png" width="175" align="right"/> The [DS1361 thermometer](https://www.maximintegrated.com/en/products/analog/sensors-and-sensor-interface/DS1631.html) is thermometer with a precision up to 12 bits (0.0625°C) and uses I2C communications. It comes in a small 8-Pin µSOP or SO package and is 3V and 5V tolerant. The [DS1631 datasheet](https://datasheets.maximintegrated.com/en/ds/DS1631-DS1731.pdf) describes the chip in detail.
-
-# DS1631 library
-
-*Arduino* library for accessing the maxim integrated . This clock requires no external components and with an internal temperature-compensated oscillator it is extremely accurate, to within ±5ppm or ±0.432 Second/Day. The library allows setting the date/time and alarms as well as accessing other information on the DS3231M.
+# DS1631 Library
+<img src="https://github.com/SV-Zanshin/DS1361/blob/master/Images/DS1361.png" width="175" align="right"/> *Arduino* library for accessing the [DS1361](https://www.maximintegrated.com/en/products/analog/sensors-and-sensor-interface/DS1631.html), a thermometer with a precision up to 12 bits (0.0625°C) that uses I2C communications. It comes in a small 8-Pin µSOP or SO package and is 3V and 5V tolerant and allows up to 8 devices to be placed on the same I2C bus. The [DS1631 datasheet](https://datasheets.maximintegrated.com/en/ds/DS1631-DS1731.pdf) describes the chip in detail.
 
 ## Overview
 The DS3231M is available as a SO8 or SO16 package and runs on both 3V and 5V systems. It has two alarms and also battery backup circuitry and requires no external crystals/oscillators or capacitors to run.
