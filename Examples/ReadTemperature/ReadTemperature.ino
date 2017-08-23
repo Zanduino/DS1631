@@ -14,32 +14,29 @@
 **                                                                                                                **
 ** Vers.  Date       Developer           Comments                                                                 **
 ** ====== ========== =================== ======================================================================== **
+** 1.0.0  2017-08-23 Arnd@SV-Zanshin.Com Completed                                                                **
 ** 1.0.0b 2017-08-20 Arnd@SV-Zanshin.Com Initial coding                                                           **
 **                                                                                                                **
 *******************************************************************************************************************/
-#include <DS1631.h>                                                          // Include the DS3231M RTC library  //
+#include <DS1631.h>                                                           // Include the DS1631 library       //
 /*******************************************************************************************************************
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
 const uint32_t SERIAL_SPEED        = 115200;                                  // Set the baud rate for Serial I/O //
-const uint8_t  SPRINTF_BUFFER_SIZE =     32;                                  // Buffer size for sprintf()        //
-const uint8_t  LED_PIN             =     13;                                  // Built-in Arduino green LED pin   //
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
 *******************************************************************************************************************/
 DS1631_Class  DS1631;                                                         // Create an instance of the DS1631 //
-char          inputBuffer[SPRINTF_BUFFER_SIZE];                               // Buffer for sprintf()/sscanf()    //
 /*******************************************************************************************************************
 ** Method Setup(). This is an Arduino IDE method which is called upon boot or restart. It is only called one time **
 ** and then control goes to the main loop, which loop indefinately.                                               **
 *******************************************************************************************************************/
 void setup() {                                                                // Arduino standard setup method    //
-  pinMode(LED_PIN,OUTPUT);                                                    // Make the LED light an output pin //
   Serial.begin(SERIAL_SPEED);                                                 // Start serial port at Baud rate   //
   #ifdef  __AVR_ATmega32U4__                                                  // If this is a 32U4 processor, then//
     delay(3000);                                                              // wait 3 seconds for the serial    //
   #endif                                                                      // interface to initialize          //
-  Serial.print(F("\nStarting Set program\n"));                                // Show program information         //
+  Serial.print(F("\nStarting ReadTemperature program\n"));                    // Show program information         //
   Serial.print(F("- Compiled with c++ version "));                            //                                  //
   Serial.print(F(__VERSION__));                                               // Show compiler information        //
   Serial.print(F("\n- On "));                                                 //                                  //
@@ -48,7 +45,7 @@ void setup() {                                                                //
   Serial.print(F(__TIME__));                                                  //                                  //
   Serial.print(F("\n"));                                                      //                                  //
   while (!DS1631.begin()) {                                                   // Initialize RTC communications    //
-    Serial.println(F("Unable to find any DS1631. Checking again in 3s."));    // Show error text                  //
+    Serial.println(F("Unable to find DS1631. Checking again in 3 seconds.")); // Show error text                  //
     delay(3000);                                                              // wait a second                    //
   } // of loop until device is located                                        //                                  //
   Serial.print(F("Found "));                                                  //                                  //
@@ -57,22 +54,22 @@ void setup() {                                                                //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
     DS1631.setPrecision(i,12);                                                // Set maximum precision = 0.0625°C //
     DS1631.setAlarmTemperature(i,1,DS1631.readTemp(i)+16);                    // Alarm when temp goes up 1°C      //
-  } // of for-next every thermometer found                                    //                                  //  
+  } // of for-next every thermometer found                                    //                                  //
 } // of method setup()                                                        //                                  //
 /*******************************************************************************************************************
 ** This is the main program for the Arduino IDE, it is an infinite loop and keeps on repeating.                   **
 *******************************************************************************************************************/
 void loop() {                                                                 //                                  //
-  for (uint8_t i=0;i<DS1631.thermometers;i++) {
-    Serial.print(F("Thermometer "));
-    Serial.print(i+1);
+  for (uint8_t i=0;i<DS1631.thermometers;i++) {                               //                                  //
+    Serial.print(F("Thermometer "));                                          //                                  //
+    Serial.print(i+1);                                                        //                                  //
     if (DS1631.getAlarm(i)) {                                                 // Print out if alarm raised        //
-      Serial.print(F(" alarm raised. Thermometer "));
+      Serial.print(F(" alarm raised. Thermometer "));                         //                                  //
     }  // of if-then an alarm has been raised                                 //                                  //
-    Serial.print(F(" has "));
-    Serial.print(DS1631.readTemp(i)*0.0625,4);
-    Serial.println("\xC2\xB0""C");                                            //                                  //
+    Serial.print(F(" has "));                                                 //                                  //
+    Serial.print(DS1631.readTemp(i)*0.0625,4);                                // convert internal to Celsius units//
+    Serial.println("\xC2\xB0""C");                                            // using floating point             //
   } // of for-next each thermometer                                           //                                  //
-  Serial.println();
-  delay(5000);
+  Serial.println();                                                           //                                  //
+  delay(5000);                                                                //                                  //
 } // of method loop()                                                         //----------------------------------//

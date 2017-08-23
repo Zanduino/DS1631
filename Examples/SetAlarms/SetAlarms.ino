@@ -18,6 +18,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer           Comments                                                                 **
 ** ====== ========== =================== ======================================================================== **
+** 1.0.0  2017-08-23 Arnd@SV-Zanshin.Com Completed testing and comments                                           **
 ** 1.0.0b 2017-08-22 Arnd@SV-Zanshin.Com Initial coding                                                           **
 **                                                                                                                **
 *******************************************************************************************************************/
@@ -53,7 +54,7 @@ void setup() {                                                                //
   Serial.print(F(__TIME__));                                                  //                                  //
   Serial.print(F("\n"));                                                      //                                  //
   while (!DS1631.begin()) {                                                   // Initialize RTC communications    //
-    Serial.println(F("Unable to find any DS1631. Checking again in 3s."));    // Show error text                  //
+    Serial.println(F("Unable to find a DS1631. Checking again in 3 seconds."));// Show error text                 //
     delay(3000);                                                              // wait a second                    //
   } // of loop until device is located                                        //                                  //
   Serial.print(F("Found "));                                                  //                                  //
@@ -82,7 +83,7 @@ void setup() {                                                                //
   alarmTemperature = ambientTemperature+                                      // Set alarm to midpoint            //
                      ((maximumTemperature-ambientTemperature)/2);             //                                  //
   Serial.print(alarmTemperature*0.0625,3);                                    //                                  //
-  Serial.println(F("\xC2\xB0""C"));                                           //                                  //
+  Serial.println(F("\xC2\xB0""C\n\n"));                                       //                                  //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
     DS1631.setAlarmTemperature(i,0,alarmTemperature);                         // Set low alarm                    //
     DS1631.setAlarmTemperature(i,1,alarmTemperature);                         // Set high alarm                   //
@@ -94,7 +95,7 @@ void setup() {                                                                //
 void loop() {                                                                 //                                  //
   static uint8_t alarmCode;                                                   //                                  //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // Loop through all thermometers    //
-    Serial.print(F("#"));                                                     //                                  //
+    Serial.print(F("DS1631 #"));                                              //                                  //
     Serial.print(i+1);                                                        //                                  //
     Serial.print(F(" = "));                                                   //                                  //
     Serial.print(DS1631.readTemp(i)*0.0625,4);                                // Display temperature              //
