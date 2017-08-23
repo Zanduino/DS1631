@@ -51,6 +51,7 @@ void setup() {                                                                //
   Serial.print(F("Found "));                                                  //                                  //
   Serial.print(DS1631.thermometers);                                          //                                  //
   Serial.println(F(" DS1631 device(s)"));                                     //                                  //
+  Serial.println(F("Setting alarms when temperature goes up 1\xC2\xB0""C"));  //                                  //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
     DS1631.setPrecision(i,12);                                                // Set maximum precision = 0.0625°C //
     DS1631.setContinuous(i);                                                  // Activate continuous mode         //
@@ -67,7 +68,7 @@ void loop() {                                                                 //
     if (DS1631.getAlarm(i)) {                                                 // Print out if alarm raised        //
       Serial.print(F(" alarm raised. Thermometer "));                         //                                  //
     }  // of if-then an alarm has been raised                                 //                                  //
-    Serial.print(F(" has "));                                                 //                                  //
+    Serial.print(F(" = "));                                                   //                                  //
     Serial.print(DS1631.readTemp(i)*0.0625,4);                                // convert internal to Celsius units//
     Serial.println("\xC2\xB0""C");                                            // using floating point             //
   } // of for-next each thermometer                                           //                                  //
