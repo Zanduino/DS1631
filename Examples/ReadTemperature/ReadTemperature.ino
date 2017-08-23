@@ -22,7 +22,7 @@
 /*******************************************************************************************************************
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
-const uint32_t SERIAL_SPEED        = 115200;                                  // Set the baud rate for Serial I/O //
+const uint32_t SERIAL_SPEED = 115200;                                         // Set the baud rate for Serial I/O //
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
 *******************************************************************************************************************/
@@ -53,6 +53,7 @@ void setup() {                                                                //
   Serial.println(F(" DS1631 device(s)"));                                     //                                  //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
     DS1631.setPrecision(i,12);                                                // Set maximum precision = 0.0625°C //
+    DS1631.setContinuous(i);                                                  // Activate continuous mode         //
     DS1631.setAlarmTemperature(i,1,DS1631.readTemp(i)+16);                    // Alarm when temp goes up 1°C      //
   } // of for-next every thermometer found                                    //                                  //
 } // of method setup()                                                        //                                  //

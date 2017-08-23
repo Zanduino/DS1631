@@ -27,20 +27,16 @@
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
 const uint32_t SERIAL_SPEED        = 115200;                                  // Set the baud rate for Serial I/O //
-const uint8_t  SPRINTF_BUFFER_SIZE =     32;                                  // Buffer size for sprintf()        //
-const uint8_t  LED_PIN             =     13;                                  // Built-in Arduino green LED pin   //
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
 *******************************************************************************************************************/
 DS1631_Class  DS1631;                                                         // Create an instance of the DS1631 //
-char          inputBuffer[SPRINTF_BUFFER_SIZE];                               // Buffer for sprintf()/sscanf()    //
 int32_t       ambientTemperature,maximumTemperature,alarmTemperature;         // Store min, max and alarm         //
 /*******************************************************************************************************************
 ** Method Setup(). This is an Arduino IDE method which is called upon boot or restart. It is only called one time **
 ** and then control goes to the main loop, which loop indefinately.                                               **
 *******************************************************************************************************************/
 void setup() {                                                                // Arduino standard setup method    //
-  pinMode(LED_PIN,OUTPUT);                                                    // Make the LED light an output pin //
   Serial.begin(SERIAL_SPEED);                                                 // Start serial port at Baud rate   //
   #ifdef  __AVR_ATmega32U4__                                                  // If this is a 32U4 processor, then//
     delay(3000);                                                              // wait 3 seconds for the serial    //
@@ -62,6 +58,7 @@ void setup() {                                                                //
   Serial.println(F(" DS1631 device(s)"));                                     //                                  //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
     DS1631.setPrecision(i,12);                                                // Set maximum precision = 0.0625°C //
+    DS1631.setContinuous(i);                                                   // Activate continuous mode         //
   } // of for-next every thermometer found                                    //                                  //
   delay(750);                                                                 // Wait for measurements to be made //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //

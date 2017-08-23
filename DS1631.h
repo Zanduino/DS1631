@@ -43,6 +43,7 @@
   const uint8_t DS1631_ACCESS_CONFIG    = 0xAC;                               // Access Configuration Byte        //
   const uint8_t DS1631_START_CONVERT    = 0x51;                               // Start a temperature conversion   //
   const uint8_t DS1631_STOP_CONVERT     = 0x22;                               // Stop any conversions             //
+  const uint8_t DS1631_POR              = 0x54;                               // Simulate Power-On-Reset          //
   /*****************************************************************************************************************
   ** Main DS1631 class for the I2C thermometers                                                                   **
   *****************************************************************************************************************/
@@ -54,12 +55,13 @@
       uint8_t thermometers;                                                   // Number of thermometers found     //
       int16_t readTemp(const uint8_t device=0);                               // Read the device temperature      //
       void    setPrecision(const uint8_t device,const uint8_t precision);     // Set the device precision         //
-      void    setAlarmTemperature(const uint8_t device,                       // Set low or high alarm temperature//
-                                  const uint8_t alarmType,                    // on the specified device          //
-                                        int16_t alarmTemp);                   //                                  //
+      void    setAlarmTemperature(const uint8_t device,                       // Set low or high alarm            //
+                                  const uint8_t alarmType,                    // temperature on the specified     //
+                                        int16_t alarmTemp);                   // device                           //
       uint8_t getAlarm(const uint8_t device);                                 // Return alarm state of device     //
       void    setPolarity(const uint8_t device, const bool polarity);         // Set polarity pin to high or low  //
       void    setContinuous(const uint8_t device,const bool continuous=true); // Set to continuous or one-shot    //
+      void    reset(const uint8_t device);                                    // Perform a software reset         //
     private:                                                                  // Private methods                  //
       uint8_t _Devices[DS1631_MAX_DEVICES]={0};                               // List of device addresses         //
       uint8_t _TransmissionStatus = 0;                                        // I2C read/write error code        //

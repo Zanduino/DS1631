@@ -155,3 +155,9 @@ void DS1631_Class::setContinuous(const uint8_t device, const bool continuous){//
   writeByte(_Devices[device],DS1631_ACCESS_CONFIG,                            // update buffer with boolean value //
   (readByte(_Devices[device],DS1631_ACCESS_CONFIG)&0xFE)&~continuous);        // of continuous switch             //
 } // of method setContinuous()                                                //                                  //
+/*******************************************************************************************************************
+** method reset() will perform a device reset                                                                     **
+*******************************************************************************************************************/
+void DS1631_Class::reset(const uint8_t device) {                              // Reset device                     //
+  writeCommand(device,DS1631_POR);                                            // Send power-on-reset command      //
+} // of method reset()                                                        //                                  //
