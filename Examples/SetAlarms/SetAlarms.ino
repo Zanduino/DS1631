@@ -58,7 +58,7 @@ void setup() {                                                                //
   Serial.println(F(" DS1631 device(s)"));                                     //                                  //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
     DS1631.setPrecision(i,12);                                                // Set maximum precision = 0.0625°C //
-    DS1631.setContinuous(i);                                                   // Activate continuous mode         //
+    DS1631.setContinuous(i);                                                  // Activate continuous mode         //
   } // of for-next every thermometer found                                    //                                  //
   delay(750);                                                                 // Wait for measurements to be made //
   for (uint8_t i=0;i<DS1631.thermometers;i++) {                               // For each thermometer             //
