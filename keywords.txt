@@ -14,7 +14,7 @@ begin		          	KEYWORD2
 thermometers			  KEYWORD2
 readTemp		      	KEYWORD2
 setPrecision			  KEYWORD2
-setAlarmTemperature KEYWORD2
+setAlarmTemperature	KEYWORD2
 getAlarm			      KEYWORD2
 setPolarity			    KEYWORD2
 setContinuous			  KEYWORD2
