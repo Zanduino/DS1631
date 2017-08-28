@@ -5,19 +5,19 @@
 ################################
 # Classes/Datatypes (KEYWORD1) #
 ################################
-DS1631							KEYWORD1
+DS1631	KEYWORD1
 
 ####################################
 # Methods and Functions (KEYWORD2) #
 ####################################
-begin		          	KEYWORD2
-thermometers			  KEYWORD2
-readTemp		      	KEYWORD2
-setPrecision			  KEYWORD2
+begin	          	KEYWORD2
+thermometers	  KEYWORD2
+readTemp	      	KEYWORD2
+setPrecision	  KEYWORD2
 setAlarmTemperature	KEYWORD2
-getAlarm			      KEYWORD2
-setPolarity			    KEYWORD2
-setContinuous			  KEYWORD2
+getAlarm	      KEYWORD2
+setPolarity	    KEYWORD2
+setContinuous	  KEYWORD2
 
 ########################
 # Constants (LITERAL1) #
