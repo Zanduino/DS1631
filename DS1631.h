@@ -13,7 +13,8 @@
 ** Although programming for the Arduino and in c/c++ is new to me, I'm a professional programmer and have learned,**
 ** over the years, that it is much easier to ignore superfluous comments than it is to decipher non-existent ones;**
 ** so both my comments and variable names tend to be verbose. The code is written to fit in the first 80 spaces   **
-** and the comments start after that and go to column 117 - allowing the code to be printed in A4 landscape mode. **
+** (anyone remember COBOL and columns 72-80?) and the comments start after that and go to column 117 - allowing   **
+** the code to be printed in A4 landscape mode.                                                                   **
 **                                                                                                                **
 ** This program is free software: you can redistribute it and/or modify it under the terms of the GNU General     **
 ** Public License as published by the Free Software Foundation, either version 3 of the License, or (at your      **
@@ -51,20 +52,20 @@
     public:                                                                   // Publicly visible methods         //
       DS1631_Class();                                                         // Class constructor                //
       ~DS1631_Class();                                                        // Class destructor                 //
-      uint8_t begin();                                                        // Start & find all DS1631 devices  //
-      uint8_t thermometers;                                                   // Number of thermometers found     //
-      int16_t readTemp(const uint8_t device=0);                               // Read the device temperature      //
-      void    setPrecision(const uint8_t device,const uint8_t precision);     // Set the device precision         //
-      void    setAlarmTemperature(const uint8_t device,                       // Set low or high alarm            //
-                                  const uint8_t alarmType,                    // temperature on the specified     //
-                                        int16_t alarmTemp);                   // device                           //
-      uint8_t getAlarm(const uint8_t device);                                 // Return alarm state of device     //
-      void    setPolarity(const uint8_t device, const bool polarity);         // Set polarity pin to high or low  //
-      void    setContinuous(const uint8_t device,const bool continuous=true); // Set to continuous or one-shot    //
-      void    reset(const uint8_t device);                                    // Perform a software reset         //
+      uint8_t  begin();                                                       // Start & find all DS1631 devices  //
+      uint8_t  thermometers;                                                  // Number of thermometers found     //
+      int16_t  readTemp(const uint8_t device=0);                              // Read the device temperature      //
+      void     setPrecision(const uint8_t device,const uint8_t precision);    // Set the device precision         //
+      void     setAlarmTemperature(const uint8_t device,                      // Set low or high alarm            //
+                                   const uint8_t alarmType,                   // temperature on the specified     //
+                                   int16_t alarmTemp);                        // device                           //
+      uint8_t  getAlarm(const uint8_t device);                                // Return alarm state of device     //
+      void     setPolarity(const uint8_t device, const bool polarity);        // Set polarity pin to high or low  //
+      void     setContinuous(const uint8_t device,const bool continuous=true);// Set to continuous or one-shot    //
+      void     reset(const uint8_t device);                                   // Perform a software reset         //
     private:                                                                  // Private methods                  //
-      uint8_t _Devices[DS1631_MAX_DEVICES]={0};                               // List of device addresses         //
-      uint8_t _TransmissionStatus = 0;                                        // I2C read/write error code        //
+      uint8_t  _Devices[DS1631_MAX_DEVICES]= {0};                             // List of device addresses         //
+      uint8_t  _TransmissionStatus         =   0;                             // I2C read/write error code        //
       void     writeCommand(const uint8_t device, const uint8_t command);     // Write a command to a device      //
       uint8_t  readByte(const uint8_t device, const uint8_t command);         // Read a byte from device/address  //
       uint16_t readWord(const uint8_t device, const uint8_t command);         // Read a word from DS1631          //
