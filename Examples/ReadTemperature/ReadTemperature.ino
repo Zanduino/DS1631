@@ -12,10 +12,10 @@
 ** GNU General Public License for more details. You should have received a copy of the GNU General Public License **
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.                                          **
 **                                                                                                                **
-** Vers.  Date       Developer           Comments                                                                 **
-** ====== ========== =================== ======================================================================== **
-** 1.0.0  2017-08-23 Arnd@SV-Zanshin.Com Completed                                                                **
-** 1.0.0b 2017-08-20 Arnd@SV-Zanshin.Com Initial coding                                                           **
+** Vers.  Date       Developer                     Comments                                                       **
+** ====== ========== ============================= ============================================================== **
+** 1.0.0  2017-08-23 https://github.com/SV-Zanshin Completed                                                      **
+** 1.0.0b 2017-08-20 https://github.com/SV-Zanshin Initial coding                                                 **
 **                                                                                                                **
 *******************************************************************************************************************/
 #include <DS1631.h>                                                           // Include the DS1631 library       //
