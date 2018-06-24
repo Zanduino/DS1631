@@ -25,6 +25,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                         Comments                                                   **
 ** ====== ========== ================================= ========================================================== **
+** 1.0.1  2018-06-24 https://github.com/SV-Zanshin     Minor code cleanup and refactoring                         **
 ** 1.0.0  2017-08-23 https://github.com/SV-Zanshin     Initial release                                            **
 ** 1.0.0b 2017-08-20 https://github.com/SV-Zanshin     Initial coding                                             **
 **                                                                                                                **
@@ -50,10 +51,10 @@
   *****************************************************************************************************************/
   class DS1631_Class {                                                        // Class definition                 //
     public:                                                                   // Publicly visible methods         //
+      uint8_t  thermometers;                                                  // Number of thermometers found     //
       DS1631_Class();                                                         // Class constructor                //
       ~DS1631_Class();                                                        // Class destructor                 //
       uint8_t  begin();                                                       // Start & find all DS1631 devices  //
-      uint8_t  thermometers;                                                  // Number of thermometers found     //
       int16_t  readTemp(const uint8_t device=0);                              // Read the device temperature      //
       void     setPrecision(const uint8_t device,const uint8_t precision);    // Set the device precision         //
       void     setAlarmTemperature(const uint8_t device,                      // Set low or high alarm            //
@@ -64,14 +65,15 @@
       void     setContinuous(const uint8_t device,const bool continuous=true);// Set to continuous or one-shot    //
       void     reset(const uint8_t device);                                   // Perform a software reset         //
     private:                                                                  // Private methods                  //
+      uint8_t  _thermometers;                                                 // Number of thermometers found     //
       uint8_t  _Devices[DS1631_MAX_DEVICES]= {0};                             // List of device addresses         //
       uint8_t  _TransmissionStatus         =   0;                             // I2C read/write error code        //
       void     writeCommand(const uint8_t device, const uint8_t command);     // Write a command to a device      //
-      uint8_t  readByte(const uint8_t device, const uint8_t command);         // Read a byte from device/address  //
-      uint16_t readWord(const uint8_t device, const uint8_t command);         // Read a word from DS1631          //
-      uint8_t  writeByte(const uint8_t device, const uint8_t command,         // Write a byte to a device/address //
-                         const uint8_t data);                                 //                                  //
-      uint8_t  writeWord(const uint8_t device, const uint8_t command,         // Write a word to a device/address //
-                         const int16_t data);                                 //                                  //
+      uint8_t  readByte    (const uint8_t device, const uint8_t command);     // Read a byte from device/address  //
+      uint16_t readWord    (const uint8_t device, const uint8_t command);     // Read a word from DS1631          //
+      uint8_t  writeByte   (const uint8_t device, const uint8_t command,      // Write a byte to a device/address //
+                            const uint8_t data);                              //                                  //
+      uint8_t  writeWord   (const uint8_t device, const uint8_t command,      // Write a word to a device/address //
+                            const int16_t data);                              //                                  //
   }; // of DS1631 class definition                                            //                                  //
 #endif                                                                        //----------------------------------//

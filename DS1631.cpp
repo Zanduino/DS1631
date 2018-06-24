@@ -19,16 +19,17 @@ DS1631_Class::~DS1631_Class() {}                                              //
 *******************************************************************************************************************/
 uint8_t DS1631_Class::begin() {                                               // Start I2C communications         //
   Wire.begin();                                                               // Start I2C as master device       //
-  for (uint8_t i=DS1631_MIN_ADDRESS;i<(DS1631_MIN_ADDRESS+8);i++) {           // Loop through possible addresses  //
+  for (uint8_t i=DS1631_MIN_ADDRESS;i<(DS1631_MIN_ADDRESS+DS1631_MAX_DEVICES);i++) {// Loop possible addresses    //
     Wire.beginTransmission(i);                                                // Check address                    //
     if (Wire.endTransmission()==0) {                                          // If there's a device present      //
       writeCommand(i,DS1631_STOP_CONVERT);                                    // Stop any active conversion       //
       writeByte(i,DS1631_ACCESS_CONFIG,readByte(i,DS1631_ACCESS_CONFIG)&0xFE);// unset bit 0 to start continuous  //
       writeCommand(i,DS1631_START_CONVERT);                                   // Begin conversions                //
-      _Devices[thermometers++] = i;                                           // Add address to list              //
+      _Devices[_thermometers++] = i;                                          // Add address to list              //
     } // of if-then device detected                                           //                                  //
   } // of for-next each possible device address                               //                                  //
-  return thermometers;                                                        // Return number of DS1631 devices  //
+  thermometers = _thermometers;                                               // Copy value to public variable    //
+  return _thermometers;                                                       // Return number of DS1631 devices  //
 } // of method begin()                                                        //                                  //
 /*******************************************************************************************************************
 ** Method writeCommand() writes a command to a I2C address without any data                                       **
@@ -90,7 +91,7 @@ uint8_t DS1631_Class::writeWord(const uint8_t device, const uint8_t command,  //
 *******************************************************************************************************************/
 int16_t DS1631_Class::readTemp(const uint8_t device) {                        // Read the device temperature      //
   int16_t returnTemperature = 0;                                              //                                  //
-  if (device>=thermometers) return INT16_MIN;                                 // Error if device out of bounds    //
+  if (device>=_thermometers) return INT16_MIN;                                // Error if device out of bounds    //
   if (readByte(_Devices[device],DS1631_ACCESS_CONFIG)&1)                      // If we are in one-shot mode then  //
     while(!(readByte(_Devices[device],DS1631_ACCESS_CONFIG)&0x80)) {}         // Wait active conversion completed //
   returnTemperature = readWord(_Devices[device],DS1631_READ_TEMPERATURE)>>4;  // Read values                      //
@@ -103,7 +104,7 @@ int16_t DS1631_Class::readTemp(const uint8_t device) {                        //
 ** respectively                                                                                                   **
 *******************************************************************************************************************/
 void DS1631_Class::setPrecision(const uint8_t device,const uint8_t precision){// Set the device precision         //
-  if(precision>8 && precision<13 && device<thermometers) {                    // If the precision is in range     //
+  if(precision>8 && precision<13 && device<_thermometers) {                   // If the precision is in range     //
     writeByte(_Devices[device],DS1631_ACCESS_CONFIG,                          // Update the 2 precision bits with //
     (readByte(_Devices[device],DS1631_ACCESS_CONFIG)&0xF3)|((precision-9)<<2));//the new value                    //
   } // of if-then precision is in range                                       //                                  //
@@ -117,7 +118,7 @@ void DS1631_Class::setAlarmTemperature(const uint8_t device,                  //
                                        const uint8_t alarmType,               // on the specified device          //
                                              int16_t alarmTemp) {             //                                  //
   alarmTemp = alarmTemp<<4;                                                   // Shift over 4 bits                //
-  if (device<thermometers) {                                                  // Skip if device is out of bounds  //
+  if (device<_thermometers) {                                                 // Skip if device is out of bounds  //
     if (alarmType==0) {                                                       // Branch here if setting low alarm //
       writeWord(_Devices[device],DS1631_ACCESS_TL,alarmTemp);                 // Set the low temperature          //
       writeByte(_Devices[device],DS1631_ACCESS_CONFIG,                        // Reset the indicator flag         //
@@ -135,7 +136,7 @@ void DS1631_Class::setAlarmTemperature(const uint8_t device,                  //
 ** calling this function                                                                                          **
 *******************************************************************************************************************/
 uint8_t DS1631_Class::getAlarm(const uint8_t device) {                        // Read the device temperature      //
-  if (device>=thermometers) return UINT8_MAX;                                 // Error if device out of bounds    //
+  if (device>=_thermometers) return UINT8_MAX;                                // Error if device out of bounds    //
   uint8_t controlBuffer = readByte(_Devices[device],DS1631_ACCESS_CONFIG);    // Get configuration register       //
   writeByte(_Devices[device],DS1631_ACCESS_CONFIG,controlBuffer&0x9F);        // Clear 2 alarm bits               //
   return (controlBuffer>>5)&3;                                                // Return shifted over 2 alarm bits //

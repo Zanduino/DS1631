@@ -51,6 +51,7 @@ Temporary Items
 .vs
 __vm
 Debug
+Release
 *.atsln
 *.componentinfo.xml
 *.cppproj
