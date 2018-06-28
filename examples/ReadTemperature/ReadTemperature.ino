@@ -4,16 +4,19 @@
 ** https://github.com/SV-Zanshin/DS1631 and a more detailed description of this program (and the library) can be  **
 ** found at https://github.com/SV-Zanshin/DS1631/wiki/ReadTemperature.ino                                         **
 **                                                                                                                **
-**                                                                                                                **
+** GNU General Public License v3.0                                                                                **
+** ================================                                                                               **
 ** This program is free software: you can redistribute it and/or modify it under the terms of the GNU General     **
 ** Public License as published by the Free Software Foundation, either version 3 of the License, or (at your      **
 ** option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY     **
 ** WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the   **
 ** GNU General Public License for more details. You should have received a copy of the GNU General Public License **
-** along with this program.  If not, see <http://www.gnu.org/licenses/>.                                          **
+** along with this program at https://github.com/SV-Zanshin/DS1631/blob/master/LICENSE.  If not, please refer to  **
+** <http://www.gnu.org/licenses/> for information on the GNU general public license.                              **
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
+** 1.0.0  2018-06-28 https://github.com/SV-Zanshin Minor cosmetic changes to comments                             **
 ** 1.0.0  2017-08-23 https://github.com/SV-Zanshin Completed                                                      **
 ** 1.0.0b 2017-08-20 https://github.com/SV-Zanshin Initial coding                                                 **
 **                                                                                                                **
@@ -26,7 +29,7 @@ const uint32_t SERIAL_SPEED = 115200;                                         //
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
 *******************************************************************************************************************/
-DS1631_Class  DS1631;                                                         // Create an instance of the DS1631 //
+DS1631_Class DS1631;                                                          // Create a class instance of DS1631//
 /*******************************************************************************************************************
 ** Method Setup(). This is an Arduino IDE method which is called upon boot or restart. It is only called one time **
 ** and then control goes to the main loop, which loop indefinately.                                               **
@@ -45,8 +48,8 @@ void setup() {                                                                //
   Serial.print(F(__TIME__));                                                  //                                  //
   Serial.print(F("\n"));                                                      //                                  //
   while (!DS1631.begin()) {                                                   // Initialize RTC communications    //
-    Serial.println(F("Unable to find DS1631. Checking again in 3 seconds.")); // Show error text                  //
-    delay(3000);                                                              // wait a second                    //
+    Serial.println(F("Unable to find a DS1631. Retrying in 3 seconds."));     // Show error text                  //
+    delay(3000);                                                              // wait 3 seconds                   //
   } // of loop until device is located                                        //                                  //
   Serial.print(F("Found "));                                                  //                                  //
   Serial.print(DS1631.thermometers);                                          //                                  //
@@ -70,8 +73,10 @@ void loop() {                                                                 //
     }  // of if-then an alarm has been raised                                 //                                  //
     Serial.print(F(" = "));                                                   //                                  //
     Serial.print(DS1631.readTemp(i)*0.0625,4);                                // convert internal to Celsius units//
-    Serial.println("\xC2\xB0""C");                                            // using floating point             //
+    Serial.println(F("\xC2\xB0""C"));                                         // using floating point             //
   } // of for-next each thermometer                                           //                                  //
   Serial.println();                                                           //                                  //
+  Serial.print(F("Waiting 5 Seconds..."));                                    //                                  //
   delay(5000);                                                                //                                  //
+  Serial.println();                                                           //                                  //
 } // of method loop()                                                         //----------------------------------//
