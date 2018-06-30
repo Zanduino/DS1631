@@ -47,7 +47,7 @@ void setup() {                                                                //
   Serial.print(F(" at "));                                                    //                                  //
   Serial.print(F(__TIME__));                                                  //                                  //
   Serial.print(F("\n"));                                                      //                                  //
-  while (!DS1631.begin()) {                                                   // Initialize RTC communications    //
+  while (!DS1631.begin(I2C_STANDARD_MODE)) {                                  // Initialize RTC communications    //
     Serial.println(F("Unable to find a DS1631. Retrying in 3 seconds."));     // Show error text                  //
     delay(3000);                                                              // wait 3 seconds                   //
   } // of loop until device is located                                        //                                  //

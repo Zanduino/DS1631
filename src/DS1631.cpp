@@ -17,8 +17,9 @@ DS1631_Class::~DS1631_Class() {}                                              //
 ** Method begin starts I2C communications and search all possible address for up to 8 different DS1631 devices.   **
 ** Return the number of devices found and also set the global variable                                            **
 *******************************************************************************************************************/
-uint8_t DS1631_Class::begin() {                                               // Start I2C communications         //
+uint8_t DS1631_Class::begin(const uint16_t i2cSpeed) {                        // Start I2C communications         //
   Wire.begin();                                                               // Start I2C as master device       //
+  Wire.setClock(i2cSpeed);                                                    // Set the I2C bus speed            //
   for (uint8_t i=DS1631_MIN_ADDRESS;i<(DS1631_MIN_ADDRESS+DS1631_MAX_DEVICES);i++) {// Loop possible addresses    //
     Wire.beginTransmission(i);                                                // Check address                    //
     if (Wire.endTransmission()==0) {                                          // If there's a device present      //

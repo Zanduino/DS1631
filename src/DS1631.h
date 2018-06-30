@@ -25,6 +25,8 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                         Comments                                                   **
 ** ====== ========== ================================= ========================================================== **
+** 1.0.2  2018-06-30 https://github.com/SV-Zanshin     Issue #3 to add option to set I2C speed                    **
+** 1.0.1  2018-06-24 https://github.com/SV-Zanshin     Minor code cleanup and refactoring                         **
 ** 1.0.1  2018-06-24 https://github.com/SV-Zanshin     Minor code cleanup and refactoring                         **
 ** 1.0.0  2017-08-23 https://github.com/SV-Zanshin     Initial release                                            **
 ** 1.0.0b 2017-08-20 https://github.com/SV-Zanshin     Initial coding                                             **
@@ -37,15 +39,17 @@
   /*****************************************************************************************************************
   ** Declare constants used in the class                                                                          **
   *****************************************************************************************************************/
-  const uint8_t DS1631_MAX_DEVICES      =    8;                               // Maximum number of DS1631 devices //
-  const uint8_t DS1631_MIN_ADDRESS      = 0x48;                               // Minimum DS1631 address           //
-  const uint8_t DS1631_ACCESS_TH        = 0xA1;                               // Access Temperature High bytes    //
-  const uint8_t DS1631_ACCESS_TL        = 0xA2;                               // Access Temperature Low bytes     //
-  const uint8_t DS1631_READ_TEMPERATURE = 0xAA;                               // Read last converted temperature  //
-  const uint8_t DS1631_ACCESS_CONFIG    = 0xAC;                               // Access Configuration Byte        //
-  const uint8_t DS1631_START_CONVERT    = 0x51;                               // Start a temperature conversion   //
-  const uint8_t DS1631_STOP_CONVERT     = 0x22;                               // Stop any conversions             //
-  const uint8_t DS1631_POR              = 0x54;                               // Simulate Power-On-Reset          //
+  const uint16_t I2C_STANDARD_MODE      =  100000;                            // Default normal I2C comms speed   //
+  const uint16_t I2C_FAST_MODE          =  400000;                            // Fast mode                        //
+  const uint8_t DS1631_MAX_DEVICES      =       8;                            // Maximum number of DS1631 devices //
+  const uint8_t DS1631_MIN_ADDRESS      =    0x48;                            // Minimum DS1631 address           //
+  const uint8_t DS1631_ACCESS_TH        =    0xA1;                            // Access Temperature High bytes    //
+  const uint8_t DS1631_ACCESS_TL        =    0xA2;                            // Access Temperature Low bytes     //
+  const uint8_t DS1631_READ_TEMPERATURE =    0xAA;                            // Read last converted temperature  //
+  const uint8_t DS1631_ACCESS_CONFIG    =    0xAC;                            // Access Configuration Byte        //
+  const uint8_t DS1631_START_CONVERT    =    0x51;                            // Start a temperature conversion   //
+  const uint8_t DS1631_STOP_CONVERT     =    0x22;                            // Stop any conversions             //
+  const uint8_t DS1631_POR              =    0x54;                            // Simulate Power-On-Reset          //
   /*****************************************************************************************************************
   ** Main DS1631 class for the I2C thermometers                                                                   **
   *****************************************************************************************************************/
@@ -54,7 +58,7 @@
       uint8_t  thermometers;                                                  // Number of thermometers found     //
       DS1631_Class();                                                         // Class constructor                //
       ~DS1631_Class();                                                        // Class destructor                 //
-      uint8_t  begin();                                                       // Start & find all DS1631 devices  //
+      uint8_t  begin(const uint16_t i2cSpeed = I2C_STANDARD_MODE);            // Start & find all DS1631 devices  //
       int16_t  readTemp(const uint8_t device=0);                              // Read the device temperature      //
       void     setPrecision(const uint8_t device,const uint8_t precision);    // Set the device precision         //
       void     setAlarmTemperature(const uint8_t device,                      // Set low or high alarm            //
