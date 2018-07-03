@@ -25,6 +25,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                         Comments                                                   **
 ** ====== ========== ================================= ========================================================== **
+** 1.0.2  2018-07-02 https://github.com/SV-Zanshin     Added guard code against multiple I2C Speed definitions    **
 ** 1.0.2  2018-06-30 https://github.com/SV-Zanshin     Issue #3 to add option to set I2C speed                    **
 ** 1.0.1  2018-06-24 https://github.com/SV-Zanshin     Minor code cleanup and refactoring                         **
 ** 1.0.1  2018-06-24 https://github.com/SV-Zanshin     Minor code cleanup and refactoring                         **
@@ -39,8 +40,11 @@
   /*****************************************************************************************************************
   ** Declare constants used in the class                                                                          **
   *****************************************************************************************************************/
-  const uint16_t I2C_STANDARD_MODE      =  100000;                            // Default normal I2C comms speed   //
-  const uint16_t I2C_FAST_MODE          =  400000;                            // Fast mode                        //
+  #ifndef I2C_MODES                                                           // I2C related constants            //
+    #define I2C_MODES                                                         // Guard code to prevent multiple   //
+    const uint16_t I2C_STANDARD_MODE              =  100000;                  // Default normal I2C 100KHz speed  //
+    const uint16_t I2C_FAST_MODE                  =  400000;                  // Fast mode                        //
+  #endif                                                                      //----------------------------------//
   const uint8_t DS1631_MAX_DEVICES      =       8;                            // Maximum number of DS1631 devices //
   const uint8_t DS1631_MIN_ADDRESS      =    0x48;                            // Minimum DS1631 address           //
   const uint8_t DS1631_ACCESS_TH        =    0xA1;                            // Access Temperature High bytes    //
