@@ -21,7 +21,7 @@ git:
   quiet: true
 env:
   global:
-    - PRETTYNAME="SV-Zanshin DS1631 Arduino Library"
+    - PRETTYNAME="SV-Zanshin Maxim Integrated DS1631 I2C Thermometer Arduino Library"
     - DOXYFILE: $TRAVIS_BUILD_DIR/Doxyfile
 
 before_install:
