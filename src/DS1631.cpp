@@ -222,6 +222,5 @@ void DS1631_Class::setContinuous(const uint8_t device, const bool continuous)
 *******************************************************************************************************************/
 void DS1631_Class::reset(const uint8_t device)
 {
-  if (device >= _thermometers) return;
-  writeCommand(device,DS1631_POR);               // Send power-on-reset command
+  if (device < _thermometers) writeCommand(device,DS1631_POR); // Send power-on-reset command
 } // of method reset()
