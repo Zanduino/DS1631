@@ -197,7 +197,7 @@ uint8_t DS1631_Class::getAlarm(const uint8_t device)
 *******************************************************************************************************************/
 void DS1631_Class::setPolarity(const uint8_t device, const bool polarity)
 {
-  if (device >= _thermometers) return UINT8_MAX; // Error if device index out of bounds
+  if (device >= _thermometers) return;
   // update buffer with boolean value of polarity setting
   writeByte(_Devices[device],DS1631_ACCESS_CONFIG,(readByte(_Devices[device],DS1631_ACCESS_CONFIG)&0xFD)&(polarity<<1));
 } // of method setPolarity()
@@ -211,7 +211,7 @@ void DS1631_Class::setPolarity(const uint8_t device, const bool polarity)
 *******************************************************************************************************************/
 void DS1631_Class::setContinuous(const uint8_t device, const bool continuous)
 {
-  if (device >= _thermometers) return UINT8_MAX; // Error if device index out of bounds
+  if (device >= _thermometers) return;
   // update buffer with boolean value of continuous switch
   writeByte(_Devices[device],DS1631_ACCESS_CONFIG,(readByte(_Devices[device],DS1631_ACCESS_CONFIG)&0xFE)&~continuous);
 } // of method setContinuous()
@@ -222,6 +222,6 @@ void DS1631_Class::setContinuous(const uint8_t device, const bool continuous)
 *******************************************************************************************************************/
 void DS1631_Class::reset(const uint8_t device)
 {
-  if (device >= _thermometers) return UINT8_MAX; // Error if device index out of bounds
+  if (device >= _thermometers) return;
   writeCommand(device,DS1631_POR);               // Send power-on-reset command
 } // of method reset()
