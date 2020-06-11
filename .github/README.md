@@ -4,4 +4,4 @@
 ## Description
 A detailed description of the library along with further details are available at the GitHub [DS1631 Wiki](https://github.com/SV-Zanshin/DS1631/wiki). This includes wiring information and sample sketches that illustrate the library and it's functionality.
 
-![Zanshin Logo](https://www.sv-zanshin.com/r/images/site/gif/zanshinkanjitiny.gif) <img src="https://www.sv-zanshin.com/r/images/site/gif/zanshintext.gif" width="75"/>
+[![Zanshin Logo](https://zanduino.github.io/Images/zanshinkanjitiny.gif) <img src="https://zanduino.github.io/Images/zanshintext.gif" width="75"/>](https://www.sv-zanshin.com)
