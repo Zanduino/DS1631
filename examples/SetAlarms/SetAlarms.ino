@@ -45,7 +45,7 @@ Written by Arnd <Zanshin_Github@sv-zanshin.com> / https://www.github.com/SV-Zans
 /***************************************************************************************************
 ** Declare all program constants                                                                  **
 ***************************************************************************************************/
-const uint32_t SERIAL_SPEED = 115200;  // Set the baud rate for Serial I/O
+const uint32_t SERIAL_SPEED = 115200;  ///< Set the baud rate for Serial I/O
 
 /***************************************************************************************************
 ** Declare global variables and instantiate classes                                               **
