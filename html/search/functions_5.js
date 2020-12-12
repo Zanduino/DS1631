@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['setalarmtemperature',['setAlarmTemperature',['../class_d_s1631___class.html#a5eb75fb20f88825e3945741d5c97a842',1,'DS1631_Class']]],
-  ['setcontinuous',['setContinuous',['../class_d_s1631___class.html#a298f1771c3f469db78eab9f22ae401f1',1,'DS1631_Class']]],
-  ['setpolarity',['setPolarity',['../class_d_s1631___class.html#a9286fb0a1aef053784e9920d9e211753',1,'DS1631_Class']]],
-  ['setprecision',['setPrecision',['../class_d_s1631___class.html#a8bec9ee0c48765b6ce0e4619f8284701',1,'DS1631_Class']]],
-  ['setup',['setup',['../_read_temperature_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'ReadTemperature.ino']]]
+  ['setalarmtemperature',['setAlarmTemperature',['../class_d_s1631___class.html#a789fc81fff34e76b1a8924f870327e64',1,'DS1631_Class']]],
+  ['setcontinuous',['setContinuous',['../class_d_s1631___class.html#a6495e8e8b90c05aec6eacd532250d621',1,'DS1631_Class']]],
+  ['setpolarity',['setPolarity',['../class_d_s1631___class.html#a8b28fd0afdbffac3f4c06436373f43ab',1,'DS1631_Class']]],
+  ['setprecision',['setPrecision',['../class_d_s1631___class.html#a953a3a5ff3d77af5b46c263e929fcca9',1,'DS1631_Class']]],
+  ['setup',['setup',['../_read_temperature_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'setup():&#160;ReadTemperature.ino'],['../_set_alarms_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'setup():&#160;SetAlarms.ino']]]
 ];

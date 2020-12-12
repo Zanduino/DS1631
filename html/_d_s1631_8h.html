@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">DS1631
-   &#160;<span id="projectnumber">Version 1.0.9</span>
+   &#160;<span id="projectnumber">v1.0.4</span>
    </div>
-   <div id="projectbrief">Arduino Library for DS1631 Real-Time clock</div>
+   <div id="projectbrief">Arduino Library for the Maxim Integrated DS1631 I2C Thermometer</div>
   </td>
  </tr>
  </tbody>
@@ -89,8 +89,8 @@ $(document).ready(function(){initNavTree('_d_s1631_8h.html','');});
 <div class="title">DS1631.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;Arduino.h&quot;</code><br />
-<code>#include &lt;Wire.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;Wire.h&gt;</code><br />
+<code>#include &quot;Arduino.h&quot;</code><br />
 </div>
 <p><a href="_d_s1631_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -110,47 +110,47 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a348cbfad3423827f84b19829d91be1a7"><td class="memItemLeft" align="right" valign="top"><a id="a348cbfad3423827f84b19829d91be1a7"></a>
-const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a348cbfad3423827f84b19829d91be1a7">I2C_STANDARD_MODE</a> = 100000</td></tr>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a348cbfad3423827f84b19829d91be1a7">I2C_STANDARD_MODE</a> {100000}</td></tr>
 <tr class="memdesc:a348cbfad3423827f84b19829d91be1a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default normal I2C 100KHz speed. <br /></td></tr>
 <tr class="separator:a348cbfad3423827f84b19829d91be1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a575b1d77d752156e2175f705573647b7"><td class="memItemLeft" align="right" valign="top"><a id="a575b1d77d752156e2175f705573647b7"></a>
-const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a575b1d77d752156e2175f705573647b7">I2C_FAST_MODE</a> = 400000</td></tr>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a575b1d77d752156e2175f705573647b7">I2C_FAST_MODE</a> {400000}</td></tr>
 <tr class="memdesc:a575b1d77d752156e2175f705573647b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast mode. <br /></td></tr>
 <tr class="separator:a575b1d77d752156e2175f705573647b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8cd79570f420db584eb4f3cc7f593e6"><td class="memItemLeft" align="right" valign="top"><a id="ab8cd79570f420db584eb4f3cc7f593e6"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#ab8cd79570f420db584eb4f3cc7f593e6">DS1631_MAX_DEVICES</a> = 8</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#ab8cd79570f420db584eb4f3cc7f593e6">DS1631_MAX_DEVICES</a> {8}</td></tr>
 <tr class="memdesc:ab8cd79570f420db584eb4f3cc7f593e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of DS1631 devices. <br /></td></tr>
 <tr class="separator:ab8cd79570f420db584eb4f3cc7f593e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3db7d5454dcaf2826f3e03600dfff710"><td class="memItemLeft" align="right" valign="top"><a id="a3db7d5454dcaf2826f3e03600dfff710"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a3db7d5454dcaf2826f3e03600dfff710">DS1631_MIN_ADDRESS</a> = 0x48</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a3db7d5454dcaf2826f3e03600dfff710">DS1631_MIN_ADDRESS</a> {0x48}</td></tr>
 <tr class="memdesc:a3db7d5454dcaf2826f3e03600dfff710"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum DS1631 address. <br /></td></tr>
 <tr class="separator:a3db7d5454dcaf2826f3e03600dfff710"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe41b03aa03bcb06c4404976cfb37270"><td class="memItemLeft" align="right" valign="top"><a id="abe41b03aa03bcb06c4404976cfb37270"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#abe41b03aa03bcb06c4404976cfb37270">DS1631_ACCESS_TH</a> = 0xA1</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#abe41b03aa03bcb06c4404976cfb37270">DS1631_ACCESS_TH</a> {0xA1}</td></tr>
 <tr class="memdesc:abe41b03aa03bcb06c4404976cfb37270"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access Temperature High bytes. <br /></td></tr>
 <tr class="separator:abe41b03aa03bcb06c4404976cfb37270"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bb53c2bb1b659bda9062514561216a5"><td class="memItemLeft" align="right" valign="top"><a id="a0bb53c2bb1b659bda9062514561216a5"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a0bb53c2bb1b659bda9062514561216a5">DS1631_ACCESS_TL</a> = 0xA2</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a0bb53c2bb1b659bda9062514561216a5">DS1631_ACCESS_TL</a> {0xA2}</td></tr>
 <tr class="memdesc:a0bb53c2bb1b659bda9062514561216a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access Temperature Low bytes. <br /></td></tr>
 <tr class="separator:a0bb53c2bb1b659bda9062514561216a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab645198f21a6559f80d486e440b90e63"><td class="memItemLeft" align="right" valign="top"><a id="ab645198f21a6559f80d486e440b90e63"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#ab645198f21a6559f80d486e440b90e63">DS1631_READ_TEMPERATURE</a> = 0xAA</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#ab645198f21a6559f80d486e440b90e63">DS1631_READ_TEMPERATURE</a> {0xAA}</td></tr>
 <tr class="memdesc:ab645198f21a6559f80d486e440b90e63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read last converted temperature. <br /></td></tr>
 <tr class="separator:ab645198f21a6559f80d486e440b90e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa4365c31f4fb31f5e3d67ce889ab5c7"><td class="memItemLeft" align="right" valign="top"><a id="afa4365c31f4fb31f5e3d67ce889ab5c7"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#afa4365c31f4fb31f5e3d67ce889ab5c7">DS1631_ACCESS_CONFIG</a> = 0xAC</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#afa4365c31f4fb31f5e3d67ce889ab5c7">DS1631_ACCESS_CONFIG</a> {0xAC}</td></tr>
 <tr class="memdesc:afa4365c31f4fb31f5e3d67ce889ab5c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access Configuration Byte. <br /></td></tr>
 <tr class="separator:afa4365c31f4fb31f5e3d67ce889ab5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a954d40db4d4ddd6918f4b7b45aac86b1"><td class="memItemLeft" align="right" valign="top"><a id="a954d40db4d4ddd6918f4b7b45aac86b1"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a954d40db4d4ddd6918f4b7b45aac86b1">DS1631_START_CONVERT</a> = 0x51</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a954d40db4d4ddd6918f4b7b45aac86b1">DS1631_START_CONVERT</a> {0x51}</td></tr>
 <tr class="memdesc:a954d40db4d4ddd6918f4b7b45aac86b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a temperature conversion. <br /></td></tr>
 <tr class="separator:a954d40db4d4ddd6918f4b7b45aac86b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a600327f4842f68fb14e1a2abc41b3d73"><td class="memItemLeft" align="right" valign="top"><a id="a600327f4842f68fb14e1a2abc41b3d73"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a600327f4842f68fb14e1a2abc41b3d73">DS1631_STOP_CONVERT</a> = 0x22</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#a600327f4842f68fb14e1a2abc41b3d73">DS1631_STOP_CONVERT</a> {0x22}</td></tr>
 <tr class="memdesc:a600327f4842f68fb14e1a2abc41b3d73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop any conversions. <br /></td></tr>
 <tr class="separator:a600327f4842f68fb14e1a2abc41b3d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2ae68fd26efe7c4a159a348b30e591f"><td class="memItemLeft" align="right" valign="top"><a id="ab2ae68fd26efe7c4a159a348b30e591f"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#ab2ae68fd26efe7c4a159a348b30e591f">DS1631_POR</a> = 0x54</td></tr>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_s1631_8h.html#ab2ae68fd26efe7c4a159a348b30e591f">DS1631_POR</a> {0x54}</td></tr>
 <tr class="memdesc:ab2ae68fd26efe7c4a159a348b30e591f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulate Power-On-Reset. <br /></td></tr>
 <tr class="separator:ab2ae68fd26efe7c4a159a348b30e591f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

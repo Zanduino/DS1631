@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ds1631',['DS1631',['../_read_temperature_8ino.html#a78227afe06629db3ce3440b6491160c2',1,'ReadTemperature.ino']]],
+  ['ds1631',['DS1631',['../_read_temperature_8ino.html#a78227afe06629db3ce3440b6491160c2',1,'DS1631():&#160;ReadTemperature.ino'],['../_set_alarms_8ino.html#a78227afe06629db3ce3440b6491160c2',1,'DS1631():&#160;SetAlarms.ino']]],
   ['ds1631_2ecpp',['DS1631.cpp',['../_d_s1631_8cpp.html',1,'']]],
   ['ds1631_2eh',['DS1631.h',['../_d_s1631_8h.html',1,'']]],
   ['ds1631_5faccess_5fconfig',['DS1631_ACCESS_CONFIG',['../_d_s1631_8h.html#afa4365c31f4fb31f5e3d67ce889ab5c7',1,'DS1631.h']]],

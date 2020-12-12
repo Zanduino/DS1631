@@ -3,7 +3,9 @@ var NAVTREE =
   [ "DS1631", "index.html", [
     [ "Arduino Library Header to access a Microchip SRAM", "index.html", [
       [ "Description", "index.html#DS1631_intro_section", null ],
-      [ "GNU General Public License v3.0", "index.html#DS1631license", null ],
+      [ "doxygen configuration", "index.html#doxygen", null ],
+      [ "clang-format", "index.html#clang-format", null ],
+      [ "GNU General Public License v3.0", "index.html#license", null ],
       [ "Author", "index.html#author", null ],
       [ "Changelog", "index.html#versions", null ]
     ] ],
