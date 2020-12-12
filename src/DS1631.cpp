@@ -1,4 +1,4 @@
-/*!
+ï»¿/*!
   @file DS1631.cpp
   @section DS1631cpp_intro_section Description
   Arduino Library for Microchip SRAM access\n\n
@@ -105,7 +105,7 @@ int16_t DS1631_Class::readTemp(const uint8_t device) const {
   /*!
     @brief    return the current temperature value for a given device number
     @details  If no device is specified then device[0] is used. The DS1631 returns raw values in
-              0.0625°C increments. A check is done to see if there is still an active conversion
+              0.0625Â°C increments. A check is done to see if there is still an active conversion
               being processed and will wait until any conversion is complete.
     @param[in] device Device number
     @return    Temperature in units of 0.0625 degrees Celsius
@@ -126,7 +126,7 @@ int16_t DS1631_Class::readTemp(const uint8_t device) const {
 void DS1631_Class::setPrecision(const uint8_t device, const uint8_t precision) const {
   /*!
     @brief    Set the precision of the DS1631 to 9, 10, 11 or 12 bits.
-    @details  This corresponds to increments of 0.5°C, 0.25°C, 0.125°C and 0.0625°C and conversion
+    @details  This corresponds to increments of 0.5Â°C, 0.25Â°C, 0.125Â°C and 0.0625Â°C and conversion
               times of 94ms, 188ms, 375ms and 750ms respectively.
     @param[in] device Device number
     @param[in] precision 9, 10, 11 or 12 for number of bits precision to use. Invalid values are
@@ -144,10 +144,10 @@ void DS1631_Class::setAlarmTemperature(const uint8_t device, const uint8_t alarm
     @brief     set the 16 bit value for the temperature alarm on a device and also reset the given
                alarm
     @details   A 0 in "alarmType" equates to low, any other value to high alarm. The alarmTemp is
-               specified in internal units, that is in increments of 0.0625°C
+               specified in internal units, that is in increments of 0.0625Â°C
     @param[in] device Device number
     @param[in] alarmType Alarm type to set. 0 means "low" and any other value means "high"
-    @param[in] alarmTemp Alarm temperature in units of 0.0625°C
+    @param[in] alarmTemp Alarm temperature in units of 0.0625Â°C
   */
   alarmTemp = alarmTemp << 4;  // Shift over 4 bits
   if (device < _thermometers)  // Skip if device is out of bounds
