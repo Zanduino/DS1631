@@ -70,15 +70,15 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 #ifndef DS1631_h
 /*! Guard code definition to prevent multiple definitions */
 #define DS1631_h
-/***************************************************************************************************
-** Declare constants used in the class                                                            **
-***************************************************************************************************/
-#ifndef I2C_MODES
-/*! Guard code definition to prevent multiple definitions */
-#define I2C_MODES
-const uint32_t I2C_STANDARD_MODE{100000};  ///< Default normal I2C 100KHz speed
-const uint32_t I2C_FAST_MODE{400000};      ///< Fast mode
-#endif
+  /***************************************************************************************************
+  ** Declare constants used in the class                                                            **
+  ***************************************************************************************************/
+  #ifndef I2C_MODES
+  /*! Guard code definition to prevent multiple definitions */
+    #define I2C_MODES
+    const uint32_t I2C_STANDARD_MODE{100000};  ///< Default normal I2C 100KHz speed
+    const uint32_t I2C_FAST_MODE{400000};      ///< Fast mode
+  #endif
 const uint8_t DS1631_MAX_DEVICES{8};          ///< Maximum number of DS1631 devices
 const uint8_t DS1631_MIN_ADDRESS{0x48};       ///< Minimum DS1631 address
 const uint8_t DS1631_ACCESS_TH{0xA1};         ///< Access Temperature High bytes
