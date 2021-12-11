@@ -116,9 +116,8 @@ int16_t DS1631_Class::readTemp(const uint8_t device) const {
   if (readByte(_Devices[device], DS1631_ACCESS_CONFIG) &
       1)  // If we are in one-shot mode then wait for conversion
   {
-    while (!(readByte(_Devices[device], DS1631_ACCESS_CONFIG) & 0x80)) {
-    }  // Wait...
-  }    // if-then conversion is active
+    while (!(readByte(_Devices[device], DS1631_ACCESS_CONFIG) & 0x80)) {}  // Wait...
+  }  // if-then conversion is active
   returnTemperature = readWord(_Devices[device], DS1631_READ_TEMPERATURE) >> 4;  // Read values
   if (returnTemperature & 0x800) returnTemperature |= 0xF000;  // Keep negative sign
   return returnTemperature;
