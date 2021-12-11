@@ -70,12 +70,12 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 #ifndef DS1631_h
 /*! Guard code definition to prevent multiple definitions */
 #define DS1631_h
-  /***************************************************************************************************
-  ** Declare constants used in the class                                                            **
-  ***************************************************************************************************/
+  /****************************************
+  ** Declare constants used in the class **
+  ****************************************/
   #ifndef I2C_MODES
   /*! Guard code definition to prevent multiple definitions */
-    #define I2C_MODES
+  #define I2C_MODES
     const uint32_t I2C_STANDARD_MODE{100000};  ///< Default normal I2C 100KHz speed
     const uint32_t I2C_FAST_MODE{400000};      ///< Fast mode
   #endif
