@@ -192,7 +192,8 @@ void DS1631_Class::setPolarity(const uint8_t device, const bool polarity) const 
   if (device >= _thermometers) return;
   // update buffer with boolean value of polarity setting
   writeByte(_Devices[device], DS1631_ACCESS_CONFIG,
-            (readByte(_Devices[device], DS1631_ACCESS_CONFIG) & 0xFD) | (polarity << 1)); // Corrected issue #13
+            (readByte(_Devices[device], DS1631_ACCESS_CONFIG) & 0xFD) |
+                (polarity << 1)); // Corrected issue #13
 }  // of method setPolarity()
 void DS1631_Class::setContinuous(const uint8_t device, const bool continuous) const {
   /*!
