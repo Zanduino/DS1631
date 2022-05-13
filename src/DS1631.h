@@ -52,16 +52,17 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 
  @section versions Changelog
 
- Version| Date       | Developer  | Comments
- ------ | ---------- | ---------- | --------
- 1.0.4  | 2019-01-26 | SV-Zanshin | Issue #9 - converted documentation to doxygen
- 1.0.3  | 2019-01-27 | SV-Zanshin | Fixed overflow on I2C data types
- 1.0.2  | 2018-07-02 | SV-Zanshin | Added guard code against multiple I2C Speed definitions
- 1.0.2  | 2018-06-30 | SV-Zanshin | Issue #3 to add option to set I2C speed
- 1.0.1  | 2018-06-24 | SV-Zanshin | Minor code cleanup and refactoring
- 1.0.1  | 2018-06-24 | SV-Zanshin | Minor code cleanup and refactoring
- 1.0.0  | 2017-08-23 | SV-Zanshin | Initial release
- 1.0.0b | 2017-08-20 | SV-Zanshin | Initial coding
+ Version| Date       | Developer   | Comments
+ ------ | ---------- | ----------- | --------
+ 1.0.4  | 2022-05-13 | RadioMCMLVI | Issue #13 - Incorrect set polarity value
+ 1.0.4  | 2019-01-26 | SV-Zanshin  | Issue #9 - converted documentation to doxygen
+ 1.0.3  | 2019-01-27 | SV-Zanshin  | Fixed overflow on I2C data types
+ 1.0.2  | 2018-07-02 | SV-Zanshin  | Added guard code against multiple I2C Speed definitions
+ 1.0.2  | 2018-06-30 | SV-Zanshin  | Issue #3 to add option to set I2C speed
+ 1.0.1  | 2018-06-24 | SV-Zanshin  | Minor code cleanup and refactoring
+ 1.0.1  | 2018-06-24 | SV-Zanshin  | Minor code cleanup and refactoring
+ 1.0.0  | 2017-08-23 | SV-Zanshin  | Initial release
+ 1.0.0b | 2017-08-20 | SV-Zanshin  | Initial coding
 */
 
 #include <Wire.h>  // Standard I2C "Wire" library
